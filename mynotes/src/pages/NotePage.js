@@ -29,8 +29,24 @@ const NotePage = () => {
         } )
     }
 
+    let deleteNote =  async () => {
+        await fetch(`http://localhost:8000/notes/${id}` , {
+            method:'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        } )
+        navigate('/')
+    }
+
     let handleSubmit = () => {
-        updateNote()
+        if(id !== 'new' && !note.body) {
+            deleteNote()
+        } else if(id === 'new') {
+            updateNote()
+        }
+       
         navigate('/') // Use navigate for redirection
     }
 
@@ -53,6 +69,7 @@ const NotePage = () => {
           placeholder="Edit note"
           value={note.body || ""} // Ensure value is always a string
         />
+        <button onClick={deleteNote}>Delete</button>
       </div>
     );
 }
