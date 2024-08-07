@@ -14,9 +14,21 @@ const NotePage = () => {
     let [ note, setNote] = useState([]);
 
     let getNote = async () => {
+        if (id == 'new') return
         let response = await fetch(`http://localhost:8000/notes/${id}`)
         let data = await response.json()
         setNote(data)
+    }
+
+
+    const createNote = async () => {
+        await fetch(`http://localhost:8000/notes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ...note, 'updated': new Date() })
+        })
     }
 
     let updateNote =  async() => {
@@ -43,8 +55,10 @@ const NotePage = () => {
     let handleSubmit = () => {
         if(id !== 'new' && !note.body) {
             deleteNote()
-        } else if(id === 'new') {
+        } else if(id !== 'new') {
             updateNote()
+        } else if(id === 'new' && note !== null) {
+            createNote()
         }
        
         navigate('/') // Use navigate for redirection
@@ -69,7 +83,12 @@ const NotePage = () => {
           placeholder="Edit note"
           value={note.body || ""} // Ensure value is always a string
         />
-        <button onClick={deleteNote}>Delete</button>
+        {id !== 'new' ? (
+            <button onClick={deleteNote}>Delete</button>
+        ) :(
+             <button onClick={handleSubmit}>Done</button>
+        )}
+        
       </div>
     );
 }
