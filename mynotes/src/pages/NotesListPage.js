@@ -9,7 +9,7 @@ const NotesListPage = () => {
 
   useEffect(() => {
     getNotes()
-  }, [notes])
+  }, [])
 
   let getNotes = async () => {
     let response = await fetch('http://localhost:8000/notes/')
