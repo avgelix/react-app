@@ -53,19 +53,15 @@ a {
 
 
 .container {
-  width: 100%;
-  height: 100vh;
   color: var(--color-text);
   background-color: var(--color-bg);
-  display: flex;
   align-items: center;
 }
 
 
 .app {
   width: 100%;
-  max-width: 480px;
-  height: 88vh;
+  height: 100vh;
   margin: 0 auto;
   background-color: var(--color-white);
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.05);
@@ -132,7 +128,7 @@ a {
 .notes-list {
   padding: 0;
   margin: 16px 0;
-  height: 70vh;
+  height: 100vh;
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
 }
@@ -215,8 +211,8 @@ a {
 
 .note-header h3 svg {
   fill: var(--color-main);
-  width: 20px;
   margin-right: 8px;
+  height: 30px;
 }
 
 .note-header button {
@@ -233,7 +229,7 @@ a {
   border: none;
   padding: 16px 12px;
   width: 100%;
-  height: 70vh;
+  height: 100vh;
   resize: none;
   scrollbar-width: none; /* Firefox */
 }
